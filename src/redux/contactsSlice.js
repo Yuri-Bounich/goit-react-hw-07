@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { fetchContacts } from './operations';
 
 const initialState = {
   items: [],
@@ -15,6 +16,14 @@ const slice = createSlice({
     deleteContact: (state, action) => {
       state.items = state.items.filter(item => item.id !== action.payload);
     },
+  },
+  // запит 3) екстраредюсером ловимо через фетчКонсактс дані. створюємо аддкей
+  // і через фулфілд (успішне виконання запиту) витягуємо дані
+  // extraReducers - перехоплює зовнішні дані (fetchContacts - в іншому файлі)
+  extraReducers: builder => {
+    builder.addCase(fetchContacts.fulfilled, (state, actions) => {
+      state.items = actions.payload;
+    });
   },
 });
 
