@@ -21,7 +21,7 @@ const ContactForm = () => {
       number: values.password,
     };
     dispatch(addContact(newContact)); // Через dispatch використовуємо addContacts і передаємо туди newContact
-    // console.log(values);
+    console.log(values);
 
     // console.log('State:', store.getState());
     // console.log('New Contact Added:', newContact);

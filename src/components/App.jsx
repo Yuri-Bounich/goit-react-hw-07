@@ -12,8 +12,11 @@ const App = () => {
   // запит 2) встановл діспатч та юзефект для виконання запиту після рендеру
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(fetchContacts()), [dispatch];
-  });
+    console.log('Dispatching fetchContacts...');
+    dispatch(fetchContacts()) // Виклик dispatch
+      .then(result => console.log('Fetch result:', result))
+      .catch(error => console.error('Fetch error:', error));
+  }, [dispatch]);
 
   return (
     <div>
