@@ -2,7 +2,7 @@ import s from './ContactForm.module.css';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import * as Yup from 'yup';
 import { useDispatch } from 'react-redux';
-import { addContact } from '../../redux/contactsSlice';
+import { addContact } from '../../redux/operations';
 import { nanoid } from '@reduxjs/toolkit';
 // import { store } from '../../redux/store';
 
@@ -20,8 +20,9 @@ const ContactForm = () => {
       name: values.login,
       number: values.password,
     };
+    // додав 2) додаємо в діспатч фввКонтакт (відправка на бекенд)
     dispatch(addContact(newContact)); // Через dispatch використовуємо addContacts і передаємо туди newContact
-    console.log(values);
+    // console.log(values);
 
     // console.log('State:', store.getState());
     // console.log('New Contact Added:', newContact);
