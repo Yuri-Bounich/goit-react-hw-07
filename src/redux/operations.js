@@ -16,9 +16,24 @@ export const fetchContacts = createAsyncThunk(
       // console.log('FetchContacts: Дані отримані:', response.data);
       return response.data;
     } catch (error) {
-      console.log(error.message);
+      // console.log(error.message);
       // console.error('FetchContacts: Помилка запиту:', error.message);
+      // помилка 1) прописуємо спеціальний обєкт thunkAPI.rejectWithValue
+      //щоб не впав сайт а видало помилку
       return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+// видал 1) функція для видалення елемента
+export const deleteContact = createAsyncThunk(
+  'contacts/deleteContact',
+  async (id, thunkAPI) => {
+    try {
+      const response = await axios.delete(`/contacts/${id}`);
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.massage);
     }
   }
 );

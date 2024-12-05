@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchContacts } from './operations';
+import { fetchContacts, deleteContact } from './operations';
 
 const initialState = {
   items: [],
@@ -21,13 +21,18 @@ const slice = createSlice({
   // і через фулфілд (успішне виконання запиту) витягуємо дані
   // extraReducers - перехоплює зовнішні дані (fetchContacts - в іншому файлі)
   extraReducers: builder => {
-    builder.addCase(fetchContacts.fulfilled, (state, actions) => {
-      state.items = actions.payload;
-    });
+    builder
+      .addCase(fetchContacts.fulfilled, (state, action) => {
+        state.items = action.payload;
+      })
+      // видал 2)  перехоплюємо фулфілд і виддаляємо на стороні клієнта
+      .addCase(deleteContact.fulfilled, (state, action) => {
+        state.items = state.items.filter(item => item.id !== action.payload.id);
+      });
   },
 });
 
 export const selectContacts = state => state.contacts.items;
 
-export const { deleteContact, addContact } = slice.actions;
+export const { addContact } = slice.actions;
 export const contactReducer = slice.reducer;
