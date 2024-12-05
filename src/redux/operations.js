@@ -10,14 +10,14 @@ axios.defaults.baseURL = 'https://674f68d6bb559617b26f16d4.mockapi.io';
 export const fetchContacts = createAsyncThunk(
   'contacts/fetchAll',
   async (_, thunkAPI) => {
-    console.log('FetchContacts: Запит надсилається...');
+    // console.log('FetchContacts: Запит надсилається...');
     try {
       const response = await axios.get('/contacts');
-      console.log('FetchContacts: Дані отримані:', response.data);
+      // console.log('FetchContacts: Дані отримані:', response.data);
       return response.data;
     } catch (error) {
       console.log(error.message);
-      console.error('FetchContacts: Помилка запиту:', error.message);
+      // console.error('FetchContacts: Помилка запиту:', error.message);
       return thunkAPI.rejectWithValue(error.message);
     }
   }
