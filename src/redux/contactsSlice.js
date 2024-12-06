@@ -1,22 +1,15 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchContacts, deleteContact, addContact } from './operations';
+import { fetchContacts, deleteContact, addContact } from './contactsOps';
 
 const initialState = {
   items: [],
+  loading: false,
+  error: null,
 };
 
 const slice = createSlice({
   name: 'contacts',
   initialState,
-  reducers: {
-    addContact: (state, action) => {
-      console.log('Adding Contact:', action.payload);
-      state.items.push(action.payload);
-    },
-    deleteContact: (state, action) => {
-      state.items = state.items.filter(item => item.id !== action.payload);
-    },
-  },
   // запит 3) екстраредюсером ловимо через фетчКонсактс дані. створюємо аддкей
   // і через фулфілд (успішне виконання запиту) витягуємо дані
   // extraReducers - перехоплює зовнішні дані (fetchContacts - в іншому файлі)
@@ -38,5 +31,4 @@ const slice = createSlice({
 
 export const selectContacts = state => state.contacts.items;
 
-// export const { addContact } = slice.actions;
 export const contactReducer = slice.reducer;

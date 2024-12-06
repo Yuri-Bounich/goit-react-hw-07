@@ -5,7 +5,7 @@ import SearchBox from './SearchBox/SearchBox';
 import ContactList from './ContactList/ContactList';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-import { fetchContacts } from '../redux/operations';
+import { fetchContacts } from '../redux/contactsOps';
 // import { nanoid } from 'nanoid';
 
 const App = () => {
