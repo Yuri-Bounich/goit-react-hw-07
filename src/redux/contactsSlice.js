@@ -31,7 +31,7 @@ const slice = createSlice({
       })
       // додав 3) відмальов на фронт додавання
       .addCase(addContact.fulfilled, (state, action) => {
-        state.items = state.items.push(action.payload);
+        state.items.push(action.payload);
       });
   },
 });
