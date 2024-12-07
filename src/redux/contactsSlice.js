@@ -29,7 +29,7 @@ const slice = createSlice({
           deleteContact.fulfilled,
           addContact.fulfilled
         ),
-        (state, action) => {
+        state => {
           state.loading = false;
         }
       )
@@ -39,7 +39,7 @@ const slice = createSlice({
           deleteContact.pending,
           addContact.pending
         ),
-        (state, action) => {
+        state => {
           state.loading = true;
           state.error = false;
         }
@@ -50,7 +50,7 @@ const slice = createSlice({
           deleteContact.rejected,
           addContact.rejected
         ),
-        (state, action) => {
+        state => {
           state.loading = false;
           state.error = true;
         }
