@@ -1,20 +1,10 @@
 import { useSelector } from 'react-redux';
 import Contact from '../Contact/Contact';
 import s from './ContactList.module.css';
-import { selectContacts } from '../../redux/contactsSlice';
-import { selectFilteredContact } from '../../redux/filtersSlice';
+import { selectFilteredContacts } from '../../redux/selectors';
 
 const ContactList = () => {
-  const contacts = useSelector(selectContacts);
-  // console.log('Contacts:', contacts);
-  // console.log(contacts);
-
-  const filter = useSelector(selectFilteredContact);
-
-  const filteredData = contacts.filter(
-    item => item.name && item.name.toLowerCase().includes(filter.toLowerCase())
-  );
-  // console.log(filteredData);
+  const contacts = useSelector(selectFilteredContacts);
 
   if (!contacts.length) {
     return <p>No contacts available</p>; // Повідомлення, якщо список порожній
@@ -22,7 +12,7 @@ const ContactList = () => {
   return (
     <div className={s.cotainer}>
       <ul className={s.block}>
-        {filteredData.map(item => (
+        {contacts.map(item => (
           <Contact {...item} key={item.id} />
         ))}
       </ul>
